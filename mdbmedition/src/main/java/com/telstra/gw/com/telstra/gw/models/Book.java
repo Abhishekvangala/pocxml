@@ -1,57 +1,54 @@
 package com.telstra.gw.com.telstra.gw.models;
 
-import org.eclipse.persistence.internal.jpa.rs.metadata.model.Attribute;
-import org.eclipse.persistence.internal.oxm.StrBuffer;
 import org.eclipse.persistence.oxm.annotations.XmlPath;
-import org.eclipse.persistence.internal.jpa.parsing.Node;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.*;
 import java.util.List;
+
 
 /**
  * Created by abhishek.vangala on 3/22/2018.
  */
 
 @XmlRootElement(name="book")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Book {
-    @XmlPath(value="/book/title/text()")
+
     private String title;
 
-    @XmlPath(value="/book/title/@custom")
-    @XmlAttribute(name="custom")
-    private String lang;
-
-    @XmlPath(value = "/book/price/text()")
     private float price;
 
-    @XmlPath(value = "/book/year/text()")
     private int year;
 
-    @XmlPath(value="/book/sample/@lang")
-    @XmlAttribute(name="check")
-    private String sampleLang;
-
-    @XmlPath(value = "/book/author/text()")
+    @XmlPath(value = "author/text()")
     private List<String> author ;
 
-    public String getSampleLang() {
-        return sampleLang;
-    }
-
-    public void setSampleLang(String sampleLang) {
-        this.sampleLang = sampleLang;
-    }
-
-
-    public List getAutorList() {
+    public List<String> getAuthor() {
         return author;
     }
 
-    public void setAutorList(List autorList) {
-        this.author = autorList;
+    public void setAuthor(List<String> author) {
+        this.author = author;
     }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
+
+    @XmlPath(value="title/@lang")
+    private String lang;
+
+   /* public List getAutorList() {
+        return author;
+    }*/
+
+   /* public void setAutorList(List autorList) {
+        this.author = autorList;
+    }*/
 
     public int getYear() {
         return year;
@@ -74,14 +71,12 @@ public class Book {
     }
 
     public void setTitle(String title) {
+        System.out.println("Inside setter method of title");
         this.title = title;
     }
 
-    public String getLanguage() {
-        return this.lang;
-    }
-
-    public void setLanguage(String language) {
-        this.lang = language;
+    @Override
+    public String toString(){
+        return this.getTitle()+" "+this.getAuthor()+" "+this.getLang();
     }
 }

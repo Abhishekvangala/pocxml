@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
@@ -35,6 +36,12 @@ public class Applicatiom {
         //core poll size=4 threads and max poll size 8 threads
         return factory;
     }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfiguration(){
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
     public static  void  main(String args[]) {
         AnnotationConfigApplicationContext
                 context = new AnnotationConfigApplicationContext(Applicatiom.class);
