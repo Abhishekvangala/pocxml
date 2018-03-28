@@ -1,72 +1,41 @@
 package com.telstra.gw.com.telstra.gw.conf;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonReader;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStreamReader;
 
 /**
  * Created by abhishek.vangala on 3/26/2018.
  */
-@Configuration
-@PropertySource("classpath:config.properties")
+
+@Component
 public class AppConfig {
 
-    /*@Value("${book_title}")
-    private String title;
-
-    @Value("${book_price}")
-    private String price;
-
-    @Value("${book_year}")
-    private String year;
-
-    public String getTitle() {
-        return title;
+    public JsonObject getConfig() {
+        return config;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setConfig(JsonObject config) {
+        this.config = config;
     }
 
-    public String getPrice() {
-        return price;
+    JsonObject config = null;
+
+    @PostConstruct
+    public void  init(){
+        Gson gson = new Gson();
+        System.out.print(System.getProperty("user.dir"));
+               JsonReader reader = new JsonReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("config.json")));
+            config = gson.fromJson(reader,JsonObject.class);
     }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getCustom() {
-        return custom;
-    }
-
-    public void setCustom(String custom) {
-        this.custom = custom;
-    }
-
-    public String getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(String authors) {
-        this.authors = authors;
-    }
-
-    @Value("${book_custom}")
-    private String custom;
-
-    @Value("${book_author}")
-    private String authors;*/
-
-
 
 
 }
