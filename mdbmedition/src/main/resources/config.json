@@ -2,8 +2,8 @@
 	"models" : [ "book","store","location"],
 	
 	"book": {
-		"xpath": "",
-		"value": "",
+		"xpath": "name(/book)",
+		"value": "book",
 		"getAsString": {
 			"title": "/book/author/text()",
 			"lang": "/book/title/@lang"
@@ -23,11 +23,19 @@
 	},
 	"contributor":{
 			"getAsString":{
-				"name":"",
-				"country":""
+				"name":"//*[local-name()='contributor']/name/text()",
+				"country":"//*[local-name()='contributor']/country/text()"
 			}
 
+	},
+	
+	"store":{
+		"xpath": "name(/store)",
+		"value": "store"
+	},
+	"location":{
+		"xpath": "name(/location)",
+		"value": "location"
 	}
-
 
 }

@@ -1,4 +1,4 @@
-package com.telstra.gw.com.telstra.gw.models;
+package com.telstra.gw.models;
 
 import org.eclipse.persistence.oxm.annotations.XmlPath;
 
@@ -42,14 +42,6 @@ public class Book {
     @XmlPath(value="title/@lang")
     private String lang;
 
-   /* public List getAutorList() {
-        return author;
-    }*/
-
-   /* public void setAutorList(List autorList) {
-        this.author = autorList;
-    }*/
-
     public int getYear() {
         return year;
     }
@@ -71,7 +63,6 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        System.out.println("Inside setter method of title");
         this.title = title;
     }
 

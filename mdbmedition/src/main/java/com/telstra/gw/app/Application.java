@@ -1,7 +1,8 @@
 package com.telstra.gw.app;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,7 +23,9 @@ import javax.jms.ConnectionFactory;
 @EnableJms
 @Configuration
 @ComponentScan(basePackages = "com.telstra.gw")
-public class Applicatiom {
+public class Application {
+
+  //  private final Logger logger = LoggerFactory.getLogger(Application.class);
     @Bean public ConnectionFactory connectionFactory(){
         ConnectionFactory connectionFactory1 = new ActiveMQConnectionFactory("admin","admin","tcp://localhost:61616");
         return connectionFactory1;
@@ -44,7 +47,7 @@ public class Applicatiom {
 
     public static  void  main(String args[]) {
         AnnotationConfigApplicationContext
-                context = new AnnotationConfigApplicationContext(Applicatiom.class);
+                context = new AnnotationConfigApplicationContext(Application.class);
         JmsListenerEndpointRegistry
                 bean = context.getBean(JmsListenerEndpointRegistry.class);
 

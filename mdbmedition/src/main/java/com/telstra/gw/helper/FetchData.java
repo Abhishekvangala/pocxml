@@ -1,4 +1,4 @@
-package com.telstra.gw.com.telstra.gw.helper;
+package com.telstra.gw.helper;
 
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
@@ -28,7 +28,8 @@ public class FetchData {
     public  String getString(String expression, Document doc) {
         try {
             XPathExpression exper = xpath.compile(expression);
-            return (String) exper.evaluate(doc, XPathConstants.STRING);
+            String value = (String) exper.evaluate(doc, XPathConstants.STRING);
+            if(value!= null) return value.trim();
         } catch (XPathExpressionException ex) {
             System.out.println("Error while retreiving");
         }
@@ -67,6 +68,21 @@ public class FetchData {
             System.out.println("Error while retreiving");
         }
         return null;
+
+    }
+
+
+
+    public  Boolean evaluateModel(String expression,Document doc, String value) {
+        try {
+            XPathExpression exper = xpath.compile(expression);
+            String xmlValue =   (String) exper.evaluate(doc, XPathConstants.STRING);
+            if(value.equalsIgnoreCase(xmlValue)) return true;
+
+        } catch (XPathExpressionException ex) {
+            System.out.println("Error while retreiving");
+        }
+        return false;
 
     }
 }

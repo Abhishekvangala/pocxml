@@ -1,4 +1,4 @@
-package com.telstra.gw.com.telstra.gw.conf;
+package com.telstra.gw.conf;
 
 
 import com.google.gson.Gson;
@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
  */
 
 @Component
-public class AppConfig {
+public class Config {
 
     public JsonObject getConfig() {
         return config;
