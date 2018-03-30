@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.telstra.gw.models.Book;
 import org.eclipse.persistence.jaxb.MarshallerProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import javax.xml.bind.*;
 import java.io.StringReader;
@@ -13,6 +15,8 @@ import java.io.StringReader;
  */
 @Component
 public class JAXbXPath {
+
+    //private final Logger logger = LoggerFactory.getLogger(JAXbXPath.class);
     public void parse(String message) {
         try {
             System.setProperty("javax.xml.bind.context.factory", "org.eclipse.persistence.jaxb.JAXBContextFactory");
